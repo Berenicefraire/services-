@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CharactersService } from './services/characters.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'caracters';
+
+  character : any = {};
+  constructor( public service : CharactersService) {
+  }
+
+  ngOnInit() {
+    this.service.getCharacters().subscribe(character => {
+      this.character = character;
+    });
+    console.log(this.character);
+  }
+
+
+
 }
+
